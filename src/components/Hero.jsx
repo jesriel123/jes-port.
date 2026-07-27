@@ -1,5 +1,6 @@
 // Hero: concise intro block with primary actions and a profile placeholder.
 import { motion } from 'framer-motion'
+import { assetUrl } from '../utils/assetUrl'
 
 function Hero({ profile }) {
   return (
@@ -61,7 +62,7 @@ function Hero({ profile }) {
                 alt={`${profile.name} profile photo`}
                 className="h-auto w-full rounded-[1.35rem] border border-slate-200 bg-white object-cover"
                 onError={(event) => {
-                  event.currentTarget.src = '/profile-placeholder.svg'
+                  event.currentTarget.src = assetUrl('/profile-placeholder.svg')
                 }}
               />
             </div>

@@ -1,9 +1,5 @@
 import { portfolio, projects, skills, timeline } from '../data/portfolioData'
 
-// Read API key from Vite environment variables. If you plan to call a real AI API,
-// prefer a server-side proxy to keep the key secret instead of exposing it in the frontend.
-const CHATBOT_API_KEY = import.meta.env.VITE_CHATBOT_API_KEY || null
-
 /*
 To connect a real AI API later, create a serverless function (for example on Vercel or Netlify)
 that calls the AI API using an environment variable for the API key, then update getBotResponse()
@@ -17,8 +13,11 @@ const lowerCaseIncludes = (message, keywords) =>
 export async function getBotResponse(userMessage) {
   // Try server-side Gemini proxy first (more accurate and secure)
   try {
-    const proxyBase = import.meta.env.VITE_CHATBOT_PROXY_URL || '' // e.g. 'http://localhost:5174' or empty to use relative '/api'
-    const apiPath = proxyBase ? `${proxyBase.replace(/\/$/, '')}/api/chat` : '/api/chat'
+    const proxyBase = import.meta.env.VITE_CHATBOT_PROXY_URL?.trim() || ''
+    const isLocalhostProxy = /^https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?(?:\/|$)/i.test(proxyBase)
+    const apiPath = proxyBase && !(import.meta.env.PROD && isLocalhostProxy)
+      ? `${proxyBase.replace(/\/$/, '')}/api/chat`
+      : '/api/chat'
     const resp = await fetch(apiPath, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

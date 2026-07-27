@@ -1,3 +1,4 @@
+import { assetUrl } from '../utils/assetUrl'
 import ojtTrackerImage from '../../image/OJT Tracker System.png'
 import crossPlatformEcommerceImage from '../../image/Cross-Platform E-Commerce System.jpg'
 
@@ -5,7 +6,7 @@ export const portfolio = {
   name: 'Jesriel Poniente Coligado',
   role: 'Junior Software Engineer | Junior Web Developer',
   location: 'Liliw, Laguna',
-  profileImageSrc: '/profile.jpg',
+  profileImageSrc: assetUrl('/profile.jpg'),
   intro:
     'I build clean, responsive web and mobile experiences with React, JavaScript, PHP, Supabase, and Firebase.',
   about:
@@ -57,12 +58,12 @@ export const projects = [
     techStack: ['React', 'React Native', 'Supabase'],
     images: [
       ojtTrackerImage,
-      '/ojt mobile 1.jpg',
-      '/ojt mobile 2.jpg',
-      '/ojt mobile 3.jpg',
-      '/ojt mobile 4.jpg',
-      '/ojt mobile 5.jpg',
-      '/ojt mobile 6.jpg',
+      assetUrl('/ojt mobile 1.jpg'),
+      assetUrl('/ojt mobile 2.jpg'),
+      assetUrl('/ojt mobile 3.jpg'),
+      assetUrl('/ojt mobile 4.jpg'),
+      assetUrl('/ojt mobile 5.jpg'),
+      assetUrl('/ojt mobile 6.jpg'),
     ],
     imageAlt: 'OJT Tracker System preview screenshot',
     githubUrl: '#',
@@ -74,9 +75,9 @@ export const projects = [
     techStack: ['React Native', 'PHP', 'Firebase'],
     images: [
       crossPlatformEcommerceImage,
-      '/Cross-Platform E-Commerce System app 1.jpg',
-      '/Cross-Platform E-Commerce System app 2.jpg',
-      '/Cross-Platform E-Commerce System app 3.jpg',
+      assetUrl('/Cross-Platform E-Commerce System app 1.jpg'),
+      assetUrl('/Cross-Platform E-Commerce System app 2.jpg'),
+      assetUrl('/Cross-Platform E-Commerce System app 3.jpg'),
     ],
     imageAlt: 'Cross-Platform E-Commerce System screenshot',
     githubUrl: '#',
@@ -86,7 +87,7 @@ export const projects = [
     description:
       'A polished corporate landing page concept focused on structure, visual clarity, and conversion-oriented section hierarchy.',
     techStack: ['HTML5', 'CSS3', 'Responsive Design'],
-    images: ['/corporate-landing-page-design-1.png'],
+    images: [assetUrl('/corporate-landing-page-design-1.png')],
     imageAlt: 'Corporate Landing Page Design 1 screenshot',
     githubUrl: '#',
   },
@@ -95,7 +96,7 @@ export const projects = [
     description:
       'A second corporate landing page variation with a cleaner hero section, improved spacing, and stronger call-to-action placement.',
     techStack: ['HTML5', 'CSS3', 'Tailwind CSS'],
-    images: ['/corporate-landing-page-design-2.png'],
+    images: [assetUrl('/corporate-landing-page-design-2.png')],
     imageAlt: 'Corporate Landing Page Design 2 screenshot',
     githubUrl: '#',
   },
@@ -104,7 +105,7 @@ export const projects = [
     description:
       'A third landing page build focused on modern visual hierarchy, responsive layout, and simple section storytelling.',
     techStack: ['React', 'Tailwind CSS', 'Responsive Design'],
-    images: ['/corporate-landing-page-design-3.png'],
+    images: [assetUrl('/corporate-landing-page-design-3.png')],
     imageAlt: 'Corporate Landing Page Design 3 screenshot',
     githubUrl: '#',
   },
