@@ -1,6 +1,7 @@
 // Contact: contact details plus a frontend-only form with simple validation.
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { init, send } from '@emailjs/browser'
 
 const initialFormState = {
   name: '',
@@ -52,8 +53,30 @@ function Contact({ profile }) {
       return
     }
 
-    setStatus('Thanks. Your message is ready to send once a backend or email service is connected.')
-    setFormData(initialFormState)
+    // Prepare EmailJS configuration. Use Vite env variables when available.
+    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_gdtupg3'
+    const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_contact'
+    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || import.meta.env.VITE_EMAILJS_USER || ''
+
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      message: formData.message,
+    }
+
+    setStatus('Sending message...')
+
+    if (PUBLIC_KEY) init(PUBLIC_KEY)
+
+    send(SERVICE_ID, TEMPLATE_ID, templateParams)
+      .then(() => {
+        setStatus('Thanks — your message was sent successfully.')
+        setFormData(initialFormState)
+      })
+      .catch((err) => {
+        console.error('EmailJS error:', err)
+        setStatus('Sorry — there was a problem sending your message. Please try again later.')
+      })
   }
 
   return (
@@ -91,6 +114,24 @@ function Contact({ profile }) {
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-teal-700">Email</p>
               <p className="mt-3 text-lg font-semibold text-slate-950">{profile.email}</p>
             </a>
+
+            <a
+              href={profile.linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="block rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.1)]"
+            >
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-teal-700">LinkedIn</p>
+              <p className="mt-3 text-lg font-semibold text-slate-950">Visit my LinkedIn profile</p>
+            </a>
+
+            <a
+              href="viber://chat?number=%2B639127699024"
+              className="block rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_18px_50px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.1)]"
+            >
+              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-teal-700">Viber</p>
+              <p className="mt-3 text-lg font-semibold text-slate-950">{profile.phone}</p>
+            </a>
           </motion.div>
 
           <motion.form
@@ -110,7 +151,6 @@ function Contact({ profile }) {
                   value={formData.name}
                   onChange={handleChange}
                   className="mt-2 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-teal-300 focus:bg-white"
-                  placeholder="Your name"
                 />
                 {errors.name ? <span className="mt-2 block text-sm text-red-600">{errors.name}</span> : null}
               </label>
@@ -123,7 +163,6 @@ function Contact({ profile }) {
                   value={formData.email}
                   onChange={handleChange}
                   className="mt-2 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-teal-300 focus:bg-white"
-                  placeholder="you@example.com"
                 />
                 {errors.email ? <span className="mt-2 block text-sm text-red-600">{errors.email}</span> : null}
               </label>
@@ -137,7 +176,6 @@ function Contact({ profile }) {
                 onChange={handleChange}
                 rows="6"
                 className="mt-2 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-teal-300 focus:bg-white"
-                placeholder="Tell me about your project or opportunity."
               />
               {errors.message ? (
                 <span className="mt-2 block text-sm text-red-600">{errors.message}</span>

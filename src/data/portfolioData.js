@@ -1,10 +1,14 @@
 import { assetUrl } from '../utils/assetUrl'
 import ojtTrackerImage from '../../image/OJT Tracker System.png'
 import crossPlatformEcommerceImage from '../../image/Cross-Platform E-Commerce System.jpg'
+import inventorySystemImage from '../../image/Inventory system.jpg'
+import inventorySystemImage2 from '../../image/Inventory system 2.jpg'
+import inventorySystemImage3 from '../../image/Inventory system 3.jpg'
+import inventorySystemImage4 from '../../image/Inventory system 4.jpg'
 
 export const portfolio = {
   name: 'Jesriel Poniente Coligado',
-  role: 'Junior Software Engineer | Junior Web Developer',
+  role: 'Junior Software Engineer',
   location: 'Liliw, Laguna',
   profileImageSrc: assetUrl('/profile.jpg'),
   intro:
@@ -12,11 +16,11 @@ export const portfolio = {
   about:
     'Information Technology graduate with hands-on experience from internships and academic projects. I focus on turning practical requirements into simple, reliable interfaces with thoughtful UI, clear code, and solid debugging habits.',
   email: 'coligadojesriel343@gmail.com',
-  phone: '0912-769-9024',
+  phone: '09127699024',
   availability:
     'Open to junior software roles, internships, and projects that value careful execution and collaboration.',
   githubUrl: 'https://github.com/your-username',
-  linkedinUrl: 'https://www.linkedin.com/in/your-profile',
+  linkedinUrl: 'https://www.linkedin.com/in/jesriel-coligado-46b61539b/',
 }
 
 export const navLinks = [
@@ -27,8 +31,14 @@ export const navLinks = [
 ]
 
 export const skills = [
+  'C#',
+  'ASP.NET Core MVC',
+  'ASP.NET Core Web API',
+  'Entity Framework Core',
   'React',
   'React Native',
+  'Expo',
+  'Vue.js',
   'JavaScript',
   'Node.js',
   'Vite.js',
@@ -38,16 +48,25 @@ export const skills = [
   'HTML5',
   'CSS3',
   'Tailwind CSS',
+  'Bootstrap',
   'Supabase',
   'Firebase',
+  'SQL Server',
+  'SQLite',
+  'MySQL',
   'SQL',
   'NoSQL',
   'REST APIs',
   'Authentication',
   'Git',
   'GitHub',
+  'Visual Studio',
+  'VS Code',
+  'Copilot',
+  'Babel',
+  'Vercel',
+  'Claude',
   'XAMPP',
-  'Basic IT Support',
 ]
 
 export const projects = [
@@ -107,6 +126,15 @@ export const projects = [
     techStack: ['React', 'Tailwind CSS', 'Responsive Design'],
     images: [assetUrl('/corporate-landing-page-design-3.png')],
     imageAlt: 'Corporate Landing Page Design 3 screenshot',
+    githubUrl: '#',
+  },
+  {
+    title: 'Inventory System',
+    description:
+      'A lightweight inventory management system focused on tracking items, stock levels, and basic record keeping.',
+    techStack: ['.NET', 'C#', 'SQL LITE'],
+    images: [inventorySystemImage, inventorySystemImage2, inventorySystemImage3, inventorySystemImage4],
+    imageAlt: 'Inventory System screenshot',
     githubUrl: '#',
   },
 ]

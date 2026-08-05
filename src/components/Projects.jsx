@@ -128,32 +128,48 @@ function Projects({ projects }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: index * 0.08 }}
-              className="group overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_rgba(15,23,42,0.1)]"
+              className={`group overflow-hidden rounded-[2rem] border bg-white shadow-[0_18px_50px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_rgba(15,23,42,0.1)] ${
+                project.isPlaceholder ? 'border-dashed border-teal-200 bg-gradient-to-br from-teal-50 via-white to-slate-50' : 'border-slate-200'
+              }`}
             >
-              <div className="overflow-hidden border-b border-slate-100 bg-slate-50">
-                <button
-                  type="button"
-                  onClick={() => openGallery(index)}
-                  className="group/image relative block h-56 w-full overflow-hidden text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
-                  aria-label={`Open gallery for ${project.title}`}
-                >
-                  <img
-                    src={project.images?.[0] ?? project.imageSrc}
-                    alt={project.imageAlt}
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover/image:scale-105"
-                  />
-                  {(project.images?.length ?? 0) > 1 ? (
-                    <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-full bg-slate-950/70 px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur sm:px-3 sm:py-2">
-                      <span>View gallery</span>
-                      <span>{project.images.length} images</span>
+              {project.isPlaceholder ? (
+                <div className="flex h-56 items-center justify-center border-b border-dashed border-teal-100 bg-[radial-gradient(circle_at_top,_rgba(13,148,136,0.12),_transparent_55%),linear-gradient(180deg,_rgba(255,255,255,0.92),_rgba(248,250,252,1))] p-6">
+                  <div className="text-center">
+                    <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-teal-200 bg-white text-3xl text-teal-700 shadow-sm">
+                      +
                     </div>
-                  ) : (
-                    <div className="absolute inset-x-4 bottom-4 rounded-full bg-slate-950/70 px-3 py-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur opacity-100 transition sm:opacity-0 sm:group-hover/image:opacity-100">
-                      Open image
-                    </div>
-                  )}
-                </button>
-              </div>
+                    <p className="mt-4 text-sm font-semibold uppercase tracking-[0.28em] text-teal-700">
+                      Add new work
+                    </p>
+                    <p className="mt-2 text-sm text-slate-500">Ready for your next project entry.</p>
+                  </div>
+                </div>
+              ) : (
+                <div className="overflow-hidden border-b border-slate-100 bg-slate-50">
+                  <button
+                    type="button"
+                    onClick={() => openGallery(index)}
+                    className="group/image relative block h-56 w-full overflow-hidden text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2"
+                    aria-label={`Open gallery for ${project.title}`}
+                  >
+                    <img
+                      src={project.images?.[0] ?? project.imageSrc}
+                      alt={project.imageAlt}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover/image:scale-105"
+                    />
+                    {(project.images?.length ?? 0) > 1 ? (
+                      <div className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-full bg-slate-950/70 px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur sm:px-3 sm:py-2">
+                        <span>View gallery</span>
+                        <span>{project.images.length} images</span>
+                      </div>
+                    ) : (
+                      <div className="absolute inset-x-4 bottom-4 rounded-full bg-slate-950/70 px-3 py-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-white backdrop-blur opacity-100 transition sm:opacity-0 sm:group-hover/image:opacity-100">
+                        Open image
+                      </div>
+                    )}
+                  </button>
+                </div>
+              )}
 
               <div className="space-y-4 p-6">
                 <div>
