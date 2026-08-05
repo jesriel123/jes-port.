@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://jesriel123.github.io/jes-port/",
+  "homepage": "https://jesriel123.github.io/jes-port./",
   "scripts": {
     "dev": "vite",
     "start-server": "node server.js",

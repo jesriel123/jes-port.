@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/jes-port/',
+  base: '/jes-port./',
   plugins: [react(), tailwindcss()],
   server: {
     // during development, forward /api calls to the local Express proxy server

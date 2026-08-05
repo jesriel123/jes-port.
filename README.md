@@ -24,4 +24,4 @@ This repository is set up to deploy automatically with GitHub Actions.
 3. Set the source to `GitHub Actions`.
 4. Push again or manually run the `Deploy to GitHub Pages` workflow from the Actions tab.
 
-The app is built with a relative Vite base so the static assets work correctly on GitHub Pages.
+The app is built with a GitHub Pages base that matches the repository path, so the static assets work correctly on GitHub Pages.
